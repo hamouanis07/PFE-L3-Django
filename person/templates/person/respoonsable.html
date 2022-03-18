@@ -1,0 +1,35 @@
+{% extends 'person/etudiant_dashboard.html'%}
+{% load  static %}
+
+{% block content %}
+
+<div id="right_bar">
+<h1>Reponsable des matiere s1</h1>
+<table>
+    <tr>
+        <th>Matiere</th>
+        <th>Responsable</th>
+    </tr>
+        {% for object in s1%}
+    <tr>
+        <th>{{ object.matierre }}</th>
+        <th>{{ object.responsable}}</th>
+    </tr>
+        {% endfor %}
+</table>
+<h1>Reponsable des matiere s2</h1>
+<table>
+    <tr>
+        <th>Matiere</th>
+        <th>Responsable</th>
+    </tr>
+        {% for object in s2%}
+    <tr>
+        <th>{{ object.matierre }}</th>
+        <th>{{ object.responsable}}</th>
+    </tr>
+        {% endfor %}
+</table>
+
+</div>
+{% endblock %}

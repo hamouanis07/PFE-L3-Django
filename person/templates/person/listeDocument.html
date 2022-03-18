@@ -1,0 +1,29 @@
+{% extends 'person/enseingant.html' %}
+
+
+
+{% block content %}
+<div class="container">
+    <br>
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Fichier</th>
+        <th>Lien Telechargement</th>
+        <th>source</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for n in doc %}
+    {%if n.destination.roles.role == 'Chef departement'%}
+      <tr>
+        <td>{{ n.nom_doc}}</td>
+        <td><a href="/media/{{ n.url_doc }}">telecharger</a></td>
+        <td>{{ n.destination.roles.role }}</td>
+      </tr>
+    {%endif%}
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

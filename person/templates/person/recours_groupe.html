@@ -1,0 +1,26 @@
+{% extends 'person/enseingant.html' %}
+{% load  static %}
+
+{% block content %}
+
+<div id="right_bar">
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Parcour</th>
+        <th>Remarque</th>
+    </tr>
+
+        {% for object in object_list %}
+    <tr>
+        <th>{{ object.etudiant.nom }}</th>
+        <th>{{ object.etudiant.prenom }}</th>
+        <th>{{ object.etudiant.get_parcour_display }}</th>
+        <th>{{ object.remarque }}</th>
+    </tr>
+        {% endfor %}
+
+</table>
+</div>
+{% endblock %}

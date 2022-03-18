@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+    {% block content %}
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100" style="padding: 0%;">
+					<div class="container" style="padding: 0;">
+                        <div class="container" style="text-align: center;">
+                            <img src="{%static 'img/LOGO.png'%}" style="width: 49%;padding-top: 3%;padding-bottom: 3%;">
+						</div>
+						<div class="container" style="    text-align: center;margin-left: 33%;margin-bottom: 3%;">
+							<br>
+							<h3 style="text-align: center;">Bienvenu a la page d'authentification du département</h3>
+							<br>
+							<h3 style="text-align: center;">Continuer autant que ....</h3>
+                        </div>
+  						<div class="btn-group btn-group-justified">
+    						<a href="{%url 'pfe:loginacount' %}" class="btn btn-outline-warning btn-lg" style="padding: 15% 35% 15% 2%;margin: 0px 0px 0px 59px;">
+										<h2>Etudiant</h2>
+							</a>
+    						<a href="{%url 'pfe:LoginViewEnseingnant' %}" class="btn btn-outline-info btn-lg" style="padding: 15% 33% 15% 2%;margin: 0px 22px 0px 129px;">
+										<h2>Administration</h2>
+							</a>
+  						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="js/main.js"></script>
+{% endblock %}

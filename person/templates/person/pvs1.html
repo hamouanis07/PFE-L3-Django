@@ -1,0 +1,33 @@
+{% extends 'person/etudiant_dashboard.html' %}
+{% load  static %}
+
+{% block content %}
+
+
+<div id="right_bar">
+<table>
+    <tr>
+        <th>Matiere</th>
+        <th>Note TD</th>
+        <th>Note TP</th>
+        <th>Note COURS</th>
+        <th>Note EXAMEN</th>
+        <th>Coef</th>
+        <th>MOY</th>
+    </tr>
+
+        {% for object in object_list %}
+    <tr>
+           <th>{{ object.matierre.matierre }}</th>
+           <th>{{ object.note_td }}</th>
+           <th>{{ object.note_tp }}</th>
+           <th>{{ object.note_cour }}</th>
+           <th>{{ object.note_examen }}</th>
+           <th>{{ object.matierre.coef }}</th>
+           <th>{{ object.moyenne }}</th>
+    </tr>
+        {% endfor %}
+
+</table>
+</div>
+{% endblock %}

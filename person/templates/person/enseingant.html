@@ -1,0 +1,315 @@
+{% load static%}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}IGMO{% endblock %}</title>
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static '/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/cs-skin-elastic.css' %}">
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="{% static '/scss/style.css' %}">
+    <link href="{% static '/css/lib/vector-map/jqvmap.min.css' %}" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+</head>
+<body {% block id %}{% endblock id %}>
+
+   <aside id="left-panel" class="left-panel" style="width: 380px">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" >IGMO</a>
+                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Les notes des etudiants</a>
+                        <ul class="sub-menu children dropdown-menu">
+
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantL1' %}">L1</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantL2' %}">L2</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantL3' %}">L3</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM1' %}">M1 SITW</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM1' %}">M1 RSD</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM1' %}">M1 RESIM</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM1' %}">M1 ADSI</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM1' %}">M1 IIPE</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM2' %}">M2 SITW</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM2' %}">M2 RSD</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM2' %}">M2 RESIM</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM2' %}">M2 ADSI</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:NoteEtudiantM2' %}">M2 IIPE</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Planning d'enseignement</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:ProfEmploiDutemp' %}">s1</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ProfEmploiDutemps2' %}">s2</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Planning de CPC</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PlanningCPCs1' %}">s1</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:PlanningCPCs2' %}">s2</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'pfe:PlanningPedagogique' %}" > <i class="menu-icon fa fa-th"></i>Planning pedagogique</a>
+                    </li>
+
+                    {% if enseingnat.roles.role == "chef cpc" %}
+                    <!-- responsable cpc -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>PV CPC</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvCpcS1' %}">s1</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:PvCpcS2' %}">s2</a></li>
+                        </ul>
+                    </li>
+                        <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>PV Matiere</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">Inforgaphie</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">SI</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">App Mobile</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">Redaction scientifique</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">Web Sem</a></li>
+                        </ul>
+                    </li>
+
+                     <li>
+                            <a href="{% url 'pfe:DepPlanningCpc' %}" > <i class="menu-icon fa fa-th"></i>Déposer un Planning de CPC</a>
+                    </li>
+
+                     <li>
+                        <a href="{% url 'pfe:RecoursNote' %}" > <i class="menu-icon fa fa-th"></i>Les recours des notes</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'pfe:RecoursGroupe' %}" > <i class="menu-icon fa fa-th"></i>Les recours des changement de groupe</a>
+                    </li>
+
+                    {% endif %}
+
+                    <!-- responsable de filiere -->
+
+                    {% if enseingnat.roles.role == "Responsable de filière" %}
+
+                    <li>
+                        <a href="#" > <i class="menu-icon fa fa-th"></i>PV synthese de filiere</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'pfe:RecoursNote' %}" > <i class="menu-icon fa fa-th"></i>Les recours des notes</a>
+                    </li>
+                        <li>
+                        <a href="{% url 'pfe:ProfEmploiDutemp' %}" > <i class="menu-icon fa fa-th"></i>Planning des Examens</a>
+                    </li>
+                        <li>
+                        <a href="{% url 'pfe:ProfEmploiDutemp' %}" > <i class="menu-icon fa fa-th"></i>Planning des Rattrapages</a>
+                    </li>
+                        <li>
+                        <a href="{% url 'pfe:ProfEmploiDutemp' %}" > <i class="menu-icon fa fa-th"></i>Planning des salles</a>
+                    </li>
+                        <li>
+                        <a href="{% url 'pfe:ProfEmploiDutemp' %}" > <i class="menu-icon fa fa-th"></i>Planning des Parcours</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'pfe:FicheDeVoeuxMaster' %}" > <i class="menu-icon fa fa-th"></i>Les fiches de voeux Master</a>
+                    </li>
+
+                    {% endif %}
+
+                    <!-- responsable de domaine -->
+
+                    {% if enseingnat.roles.role == "Responsable de domaine" %}
+                        <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>PV Matiere</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">Inforgaphie</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">SI</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">App Mobile</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">Redaction scientifique</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvMatiere' %}">Web Sem</a></li>
+                        </ul>
+                    </li>
+                        <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>PV CPC</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PvCpcS1' %}">s1</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:PvCpcS2' %}">s2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" > <i class="menu-icon fa fa-th"></i>PV Synthese filiere</a>
+                    </li>
+
+                    {% endif %}
+
+                    <!-- adjoint de pedaogie  -->
+
+                    {% if enseingnat.roles.role == "Adjoint pédagogie" %}
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Planning des surveillences</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'pfe:PlanningSurveillenceS1' %}">s1</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:PlanningSurveillenceS2' %}">s2</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Liste des etudiants</a>
+                        <ul class="sub-menu children dropdown-menu">
+
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantL1' %}">L1</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantL2' %}">L2</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantL3' %}">L3</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM1' %}">M1 SITW</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM1' %}">M1 RSD</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM1' %}">M1 RESIM</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM1' %}">M1 ADSI</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM1' %}">M1 IIPE</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM2' %}">M2 SITW</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM2' %}">M2 RSD</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM2' %}">M2 RESIM</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM2' %}">M2 ADSI</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="{% url 'pfe:ListeEtudiantM2' %}">M2 IIPE</a></li>
+
+                        </ul>
+                    </li>
+
+                    {% endif %}
+
+                    <!-- chef de departement  -->
+
+                    {% if enseingnat.roles.role == "Chef département" %}
+
+                    <li>
+                        <a href="{% url 'pfe:PlanningPedagogique' %}" > <i class="menu-icon fa fa-th"></i>Planning des doctorants</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'pfe:Document' %}" > <i class="menu-icon fa fa-th"></i>Les documents a signer</a>
+                    </li>
+
+                    {% endif %}
+
+
+                    <h1 class="menu-title"></h1>
+                    <li class="active">
+                        <a href="/logout/"> <i class="menu-icon fa fa-dashboard"></i> Logout </a>
+                    </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="dropdown for-notification">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                            <span class="count bg-danger">3</span>
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="notification">
+                            <p class="red"> 3 Notification</p>
+                            <a class="dropdown-item media " href="#">
+                                <i class="fa fa-check"></i>
+                                <p>Vous avez Fait Un Recours 1 .</p>
+                            </a>
+                            <a class="dropdown-item media" href="#">
+                                <i class="fa fa-info"></i>
+                                <p>Vous avez Fait Un Recours 2 .</p>
+                            </a>
+                            <a class="dropdown-item media " href="#">
+                                <i class="fa fa-warning"></i>
+                                <p>Vous avez Fait Un Recours 3 .</p>
+                            </a>
+                          </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                                <h5>{{ enseingnat.nom }} {{ enseingnat.prenom }}</h5>
+                                <h5>{{ enseingnat.roles}} | {{ enseingnat.get_grade_display }}</h5>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+        <div class="breakline"></div>
+
+
+        <div class="content mt-3">
+
+    {% block content %}
+
+    {% endblock %}
+
+
+        </div> <!-- .content -->
+    </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+<script src="{% static '/js/vendor/jquery-2.1.4.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="{% static '/js/plugins.js' %}"></script>
+    <script src="{% static '/js/main.js' %}"></script>
+
+
+    <script src="{% static '/js/lib/chart-js/Chart.bundle.js' %}"></script>
+    <script src="{% static '/js/dashboard.js' %}"></script>
+    <script src="{% static '/js/widgets.js' %}"></script>
+    <script src="{% static '/js/lib/vector-map/jquery.vmap.js'%}"></script>
+    <script src="{% static '/js/lib/vector-map/jquery.vmap.min.js' %}"></script>
+    <script src="{% static '/js/lib/vector-map/jquery.vmap.sampledata.js' %}"></script>
+    <script src='{% static '/js/lib/vector-map/country/jquery.vmap.world.js' %}'></script>
+
+</body>
+</html>

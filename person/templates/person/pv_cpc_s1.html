@@ -1,0 +1,20 @@
+{% extends 'person/enseingant.html' %}
+{% load  static %}
+
+{% block content %}
+
+    {% block loadcontent %}
+        <h1>    CPC 1</h1>
+        <img src="{% static '/img/pvCpcP1.JPG' %}" alt="">
+        <img src="{% static '/img/pvCpcP2.JPG' %}" alt="">
+        <h1>    CPC 2</h1>
+        <img src="{% static '/img/pvCpcP1.JPG' %}" alt="">
+        <img src="{% static '/img/pvCpcP2.JPG' %}" alt="">
+        <h1>    CPC 3</h1>
+        <img src="{% static '/img/pvCpcP1.JPG' %}" alt="">
+        <img src="{% static '/img/pvCpcP2.JPG' %}" alt="">
+        <h1>    CPC 4</h1>
+        <img src="{% static '/img/pvCpcP1.JPG' %}" alt="">
+        <img src="{% static '/img/pvCpcP2.JPG' %}" alt="">
+    {% endblock loadcontent %}
+{% endblock %}

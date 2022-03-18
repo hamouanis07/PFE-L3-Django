@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block id %}
+id="login"
+{% endblock %}
+{% block content %}
+<div id="loginform" class="uk-inline">
+<div class="uk-position-center uk-card uk-card-default uk-card-body login_css ">
+    <div>
+        <h3>Authentification</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div>
+                <input class="basic_css" type="submit">
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}

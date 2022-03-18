@@ -1,0 +1,22 @@
+{% extends 'person/etudiant_dashboard.html'%}
+{% load  static %}
+
+{% block content %}
+
+<div id="right_bar">
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Etat</th>
+    </tr>
+
+        {% for object in object_list %}
+    <tr>
+        <th>{{ object.get_recours_display }}</th>
+        <th>{{ object.get_accepte_display }}</th>
+    </tr>
+        {% endfor %}
+
+</table>
+</div>
+{% endblock %}
